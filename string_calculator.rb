@@ -14,6 +14,9 @@ class StringCalculator
     else
       delimiter = /[,|\n]/
     end
+
+    # Split numbers by the provided delimiter(s)
+    digits = numbers.split(delimiter)
   end
 
   private
@@ -40,5 +43,6 @@ end
 # calculator = StringCalculator.new
 # puts calculator.add('')          # Should output 0
 # puts calculator.add("1,\n")    # Uncommenting this line would raise the 'input is invalid' exception
+# puts calculator.add('1')         # Should output 1
 # puts calculator.add("1\n2,3")    # Should output 6
 # puts calculator.add("//;\n1;2")  # Should output 3
