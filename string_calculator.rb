@@ -20,6 +20,9 @@ class StringCalculator
 
     # Validate and convert string digits to integers
     integer_digits = validate_and_convert(digits)
+
+    # Sum the numbers and return the result
+    integer_digits.sum
   end
 
   private
@@ -67,3 +70,4 @@ end
 # puts calculator.add("1\n2,3")    # Should output 6
 # puts calculator.add("//;\n1;2")  # Should output 3
 # puts calculator.add('1,-2,-3')   # Should output negative numbers not allowed: -2, -3
+# puts calculator.add('1,5')       # Should output 6
