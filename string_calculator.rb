@@ -17,6 +17,9 @@ class StringCalculator
 
     # Split numbers by the provided delimiter(s)
     digits = numbers.split(delimiter)
+
+    # Validate and convert string digits to integers
+    integer_digits = validate_and_convert(digits)
   end
 
   private
@@ -37,6 +40,23 @@ class StringCalculator
     delimiters = custom_delimiter.scan(/\[([^\[\]]+)\]/).flatten.map { |delim| Regexp.escape(delim) }
     Regexp.union(delimiters)
   end
+
+  def validate_and_convert(digits)
+    # Convert to integer and check for negatives
+    negative_numbers = []
+    integer_digits = digits.map do |digit|
+      raise 'input is invalid' if digit.strip.empty?
+
+      number = Integer(digit)
+      negative_numbers << number if number.negative?
+      number
+    end
+
+    # Raise an exception if there are negative numbers
+    raise "negative numbers not allowed: #{negative_numbers.join(', ')}" unless negative_numbers.empty?
+
+    integer_digits
+  end
 end
   
 # Example usage:
@@ -46,3 +66,4 @@ end
 # puts calculator.add('1')         # Should output 1
 # puts calculator.add("1\n2,3")    # Should output 6
 # puts calculator.add("//;\n1;2")  # Should output 3
+# puts calculator.add('1,-2,-3')   # Should output negative numbers not allowed: -2, -3
