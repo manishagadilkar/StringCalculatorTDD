@@ -50,5 +50,24 @@ RSpec.describe StringCalculator do
       end
     end
 
+    context 'when the string contains numbers' do
+      it 'returns the sum of the numbers' do
+        calculator = StringCalculator.new
+        expect(calculator.add('1,2,3')).to eq(6)
+      end
+    end
+
+    context 'when given single number' do
+      it 'returns that number' do
+        expect(calculator.add('1')).to eq(1)
+      end
+    end
+
+    context 'when given two numbers separated by comma' do
+      it 'returns their sum' do
+        expect(calculator.add('1,5')).to eq(6)
+      end
+    end
+
   end
 end
